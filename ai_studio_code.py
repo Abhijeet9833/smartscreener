@@ -1,5 +1,5 @@
 import streamlit as st
-import PyPDF2
+import PyPDF
 from openai import OpenAI
 import os
 
@@ -14,7 +14,7 @@ client = OpenAI(api_key=api_key)
 
 # PDF मधून टेक्स्ट काढणारे फंक्शन
 def extract_text_from_pdf(uploaded_file):
-    pdf_reader = PyPDF2.PdfReader(uploaded_file)
+    pdf_reader = PyPDF.PdfReader(uploaded_file)
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
@@ -125,4 +125,5 @@ if st.button("🔍 सर्वोत्तम उमेदवार शोध�
                 <h3>📄 {res['Name']} - <span style="color:{color}">Rating: {res['Score']}/100</span></h3>
                 <p><strong>कारण:</strong> {res['Reason']}</p>
             </div>
+
             """, unsafe_allow_html=True)
